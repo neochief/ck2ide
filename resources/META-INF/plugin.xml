@@ -1,0 +1,38 @@
+<idea-plugin>
+  <id>com.ck2ide</id>
+  <name>CK2 IDE</name>
+  <version>1.0</version>
+  <vendor email="neochief@shvetsgroup.com" url="http://shvetsgroup.com">Alexander Shvets</vendor>
+
+  <description><![CDATA[
+      IDE for Crusader Kings 2
+    ]]></description>
+
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="145.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <depends optional="true" config-file="java-deps.xml">com.intellij.modules.java</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <sdkType implementation="com.ck2ide.sdk.CK2SdkType"/>
+    <projectService serviceInterface="com.ck2ide.sdk.CK2SdkService"
+                    serviceImplementation="com.ck2ide.sdk.CK2SdkService" overrides="false"/>
+    <library.presentationProvider implementation="com.ck2ide.sdk.CK2SdkLibraryPresentationProvider"/>
+
+    <projectConfigurable groupId="language" provider="com.ck2ide.configuration.CK2ConfigurableProvider" dynamic="true"/>
+
+    <!--<directoryProjectGenerator implementation="com.ck2ide.CK2ProjectGenerator"/>-->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>

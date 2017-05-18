@@ -1,0 +1,7 @@
+<idea-plugin version="2">
+  <extensions defaultExtensionNs="com.intellij">
+    <moduleType id="CK2_MODULE" implementationClass="com.ck2ide.project.CK2ModuleType"/>
+    <moduleConfigurationEditorProvider implementation="com.ck2ide.configuration.CK2ModuleEditorsProvider" order="first"/>
+    <projectService serviceInterface="com.ck2ide.sdk.CK2SdkService" serviceImplementation="com.ck2ide.sdk.CK2IdeaSdkService" overrides="true"/>
+  </extensions>
+</idea-plugin>
