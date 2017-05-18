@@ -5,7 +5,6 @@ import com.ck2ide.CK2Icons;
 import com.ck2ide.CK2Constants;
 import com.intellij.openapi.projectRoots.*;
 import com.intellij.openapi.roots.OrderRootType;
-import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jdom.Element;
@@ -14,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
-import java.io.File;
 
 /**
  * Defines CK2ModuleLibrariesInitializer SDK. In other words, CK2ModuleLibrariesInitializer game directory.
@@ -101,13 +99,10 @@ public class CK2SdkType extends com.intellij.openapi.projectRoots.SdkType {
         if (path == null) return;
         modificator.setHomePath(path);
 
-        for (VirtualFile file : CK2SdkUtil.getSdkDirectoriesToAttach(path)) {
+        for (VirtualFile file : CK2SdkUtil.getCK2GameScriptsDirectories(path)) {
             modificator.addRoot(file, OrderRootType.CLASSES);
             modificator.addRoot(file, OrderRootType.SOURCES);
         }
-        File file1 = FileUtil.findFirstThatExist("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Crusader Kings II\\common\\artifact_spawns\\00_artifact_spawns.txt");
-        VirtualFile file2 = LocalFileSystem.getInstance().findFileByIoFile(file1);
-        modificator.addRoot(file2, OrderRootType.SOURCES);
 
         modificator.commitChanges();
     }

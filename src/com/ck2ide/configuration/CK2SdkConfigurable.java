@@ -91,7 +91,7 @@ public class CK2SdkConfigurable implements SearchableConfigurable, Configurable.
                 boolean toRemove = StringUtil.isEmpty(sdkPath);
 
                 if (!toRemove) {
-                    for (VirtualFile file : CK2SdkUtil.getSdkDirectoriesToAttach(sdkPath)) {
+                    for (VirtualFile file : CK2SdkUtil.getCK2GameScriptsDirectories(sdkPath)) {
                         libraryModel.addRoot(file, OrderRootType.CLASSES);
                     }
                 }

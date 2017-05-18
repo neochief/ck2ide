@@ -21,6 +21,7 @@
   <depends optional="true" config-file="java-deps.xml">com.intellij.modules.java</depends>
 
   <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation="com.ck2ide.CK2FileTypeFactory"/>
     <sdkType implementation="com.ck2ide.sdk.CK2SdkType"/>
     <projectService serviceInterface="com.ck2ide.sdk.CK2SdkService"
                     serviceImplementation="com.ck2ide.sdk.CK2SdkService" overrides="false"/>
@@ -32,7 +33,10 @@
   </extensions>
 
   <actions>
-    <!-- Add your actions here -->
+    <action id="CK2.NewTxtFile" class="com.ck2ide.actions.NewCK2ScriptAction"
+            text="CK2 script" description="Create new CK2 script">
+      <add-to-group group-id="NewGroup" relative-to-action="NewFile" anchor="after"/>
+    </action>
   </actions>
 
 </idea-plugin>

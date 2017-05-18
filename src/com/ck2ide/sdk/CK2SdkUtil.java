@@ -51,39 +51,22 @@ public class CK2SdkUtil {
     }
 
     @NotNull
-    public static Collection<VirtualFile> getSdkDirectoriesToAttach(@NotNull String sdkPath) {
-        // At this point, we only add a root path.
-        String srcPath = "";
-        VirtualFile src = VirtualFileManager.getInstance().findFileByUrl(VfsUtilCore.pathToUrl(FileUtil.join(sdkPath, srcPath)));
-        if (src != null && src.isDirectory()) {
-            return Collections.singletonList(src);
+    public static Collection<VirtualFile> getCK2GameScriptsDirectories(@NotNull String sdkPath) {
+        // TODO: Make dynamic?
+        // TODO: Add eu4?
+        String[] srcPaths = {"common", "decisions", "events", "gamebook", "gfx", "history", "interface", "localisation", "map"};
+        Collection<VirtualFile> list = new ArrayList<VirtualFile>();
+        for (String srcPath : srcPaths) {
+            VirtualFile src = VirtualFileManager.getInstance().findFileByUrl(VfsUtilCore.pathToUrl(FileUtil.join(sdkPath, srcPath)));
+            if (src != null && src.isDirectory()) {
+                list.add(src);
+            }
         }
-        return Collections.emptyList();
+        return list;
     }
-
 
     public static String retrieveCK2Version(String sdkHomePath) {
         // TODO: Parse the real thing.
         return "2.7.1";
-    }
-
-    @NotNull
-    public static Collection<VirtualFile> getCK2PathSources(@NotNull Project project, @Nullable Module module) {
-        if (module != null) {
-            Project project1 = module.getProject();
-            return getCK2PathRoots(project1, module);
-        }
-        return getCK2PathRoots(project, null);
-    }
-
-    @NotNull
-    private static Collection<VirtualFile> getCK2PathRoots(@NotNull Project project, @Nullable Module module) {
-//        Collection<VirtualFile> roots = ContainerUtil.newArrayList();
-//        if (CK2ApplicationLibrariesService.getInstance().isUseGoPathFromSystemEnvironment()) {
-//            roots.addAll(getCK2PathsRootsFromEnvironment());
-//        }
-//        roots.addAll(module != null ? CK2LibrariesService.getUserDefinedLibraries(module) : CK2LibrariesService.getUserDefinedLibraries(project));
-//        return roots;
-        return ContainerUtil.newArrayList();
     }
 }
